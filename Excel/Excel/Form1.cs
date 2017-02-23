@@ -15,6 +15,24 @@ namespace Excel
         public Form1()
         {
             InitializeComponent();
+            tabctrl.Appearance = TabAppearance.FlatButtons;
+            tabctrl.ItemSize = new Size(0, 1);
+            tabctrl.SizeMode = TabSizeMode.Fixed;
+        }
+
+        private void btnSuivant_Click(object sender, EventArgs e)
+        {
+            tabctrl.SelectedIndex++;
+        }
+
+        private void btnPrecedent_Click(object sender, EventArgs e)
+        {
+            tabctrl.SelectedIndex--;
+        }
+
+        private void lblChoixDufichierExcel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
