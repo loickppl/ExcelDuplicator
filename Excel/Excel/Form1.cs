@@ -22,17 +22,48 @@ namespace Excel
 
         private void btnSuivant_Click(object sender, EventArgs e)
         {
-            tabctrl.SelectedIndex++;
+            btnPrecedent.Show();
+            tabctrl.TabIndex++;
+            if (tabctrl.TabIndex == 2)
+            {
+                btnSuivant.Text = "Générer fichier";
+                tabctrl.SelectedIndex++;
+            }
+            else if(tabctrl.TabIndex < 2)
+            {
+                tabctrl.SelectedIndex++;
+                btnSuivant.Text = "Suivant";
+            }       
         }
 
         private void btnPrecedent_Click(object sender, EventArgs e)
         {
-            tabctrl.SelectedIndex--;
+            btnSuivant.Show();
+            if (tabctrl.SelectedIndex <= 1)
+            {
+                btnPrecedent.Hide();
+                tabctrl.SelectedIndex = 0;
+                tabctrl.TabIndex = 0;
+            }
+            else
+            {
+                tabctrl.SelectedIndex--;
+                if (tabctrl.SelectedIndex < 2)
+                {
+                    btnSuivant.Text = "Suivant";
+                }
+            }
         }
 
         private void lblChoixDufichierExcel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            tabctrl.SelectedIndex = 3;
+            btnSuivant.Hide();
         }
     }
 }
