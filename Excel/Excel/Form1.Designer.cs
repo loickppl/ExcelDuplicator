@@ -31,31 +31,32 @@
             this.btnSuivant = new System.Windows.Forms.Button();
             this.btnPrecedent = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lblCheminFichier = new System.Windows.Forms.Label();
-            this.txtBoxSuivant = new System.Windows.Forms.TextBox();
-            this.btnparcourir = new System.Windows.Forms.Button();
-            this.lblChoixDufichierExcel = new System.Windows.Forms.Label();
-            this.tabctrl = new System.Windows.Forms.TabControl();
             this.button2 = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.lstBoxFeuilles = new System.Windows.Forms.ListBox();
-            this.chckBoxSuppFeuille = new System.Windows.Forms.CheckBox();
-            this.lblChoixCellule = new System.Windows.Forms.Label();
-            this.lblChoixfeuilleCloner = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblChoixfeuilleCloner = new System.Windows.Forms.Label();
+            this.lblChoixCellule = new System.Windows.Forms.Label();
+            this.chckBoxSuppFeuille = new System.Windows.Forms.CheckBox();
+            this.lstBoxFeuilles = new System.Windows.Forms.ListBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblChoixDufichierExcel = new System.Windows.Forms.Label();
+            this.btnparcourir = new System.Windows.Forms.Button();
+            this.tbxExcelFile = new System.Windows.Forms.TextBox();
+            this.lblCheminFichier = new System.Windows.Forms.Label();
+            this.tabctrl = new System.Windows.Forms.TabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.opdFiles = new System.Windows.Forms.OpenFileDialog();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -99,31 +100,15 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // button2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 123);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Chemin du fichier : ";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(168, 123);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(221, 20);
-            this.textBox2.TabIndex = 5;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(395, 123);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Parcourir";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button2.Location = new System.Drawing.Point(23, 206);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(139, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Modifier le fichier de noms";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
             // 
@@ -134,6 +119,32 @@
             this.label3.Size = new System.Drawing.Size(293, 29);
             this.label3.TabIndex = 10;
             this.label3.Text = "Choix fu fichier de noms";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(395, 123);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Parcourir";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(168, 123);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(221, 20);
+            this.textBox2.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(19, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(143, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Chemin du fichier : ";
             // 
             // tabPage2
             // 
@@ -151,11 +162,65 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(115, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(255, 29);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Clonage de la feuille";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Location = new System.Drawing.Point(263, 131);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(117, 20);
+            this.textBox1.TabIndex = 8;
+            // 
+            // lblChoixfeuilleCloner
+            // 
+            this.lblChoixfeuilleCloner.AutoSize = true;
+            this.lblChoixfeuilleCloner.Location = new System.Drawing.Point(6, 75);
+            this.lblChoixfeuilleCloner.Name = "lblChoixfeuilleCloner";
+            this.lblChoixfeuilleCloner.Size = new System.Drawing.Size(157, 13);
+            this.lblChoixfeuilleCloner.TabIndex = 7;
+            this.lblChoixfeuilleCloner.Text = "Séléctionner la feuille à cloner : ";
+            // 
+            // lblChoixCellule
+            // 
+            this.lblChoixCellule.AutoSize = true;
+            this.lblChoixCellule.Location = new System.Drawing.Point(260, 115);
+            this.lblChoixCellule.Name = "lblChoixCellule";
+            this.lblChoixCellule.Size = new System.Drawing.Size(120, 13);
+            this.lblChoixCellule.TabIndex = 4;
+            this.lblChoixCellule.Text = "Choix de la cellule excel";
+            // 
+            // chckBoxSuppFeuille
+            // 
+            this.chckBoxSuppFeuille.AutoSize = true;
+            this.chckBoxSuppFeuille.Location = new System.Drawing.Point(263, 95);
+            this.chckBoxSuppFeuille.Name = "chckBoxSuppFeuille";
+            this.chckBoxSuppFeuille.Size = new System.Drawing.Size(149, 17);
+            this.chckBoxSuppFeuille.TabIndex = 3;
+            this.chckBoxSuppFeuille.Text = "Supprimer la feuille clonée";
+            this.chckBoxSuppFeuille.UseVisualStyleBackColor = true;
+            // 
+            // lstBoxFeuilles
+            // 
+            this.lstBoxFeuilles.FormattingEnabled = true;
+            this.lstBoxFeuilles.Location = new System.Drawing.Point(151, 89);
+            this.lstBoxFeuilles.Name = "lstBoxFeuilles";
+            this.lstBoxFeuilles.Size = new System.Drawing.Size(84, 173);
+            this.lstBoxFeuilles.TabIndex = 2;
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.lblChoixDufichierExcel);
             this.tabPage1.Controls.Add(this.btnparcourir);
-            this.tabPage1.Controls.Add(this.txtBoxSuivant);
+            this.tabPage1.Controls.Add(this.tbxExcelFile);
             this.tabPage1.Controls.Add(this.lblCheminFichier);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -164,32 +229,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // lblCheminFichier
-            // 
-            this.lblCheminFichier.AutoSize = true;
-            this.lblCheminFichier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCheminFichier.Location = new System.Drawing.Point(33, 125);
-            this.lblCheminFichier.Name = "lblCheminFichier";
-            this.lblCheminFichier.Size = new System.Drawing.Size(143, 20);
-            this.lblCheminFichier.TabIndex = 1;
-            this.lblCheminFichier.Text = "Chemin du fichier : ";
-            // 
-            // txtBoxSuivant
-            // 
-            this.txtBoxSuivant.Location = new System.Drawing.Point(182, 125);
-            this.txtBoxSuivant.Name = "txtBoxSuivant";
-            this.txtBoxSuivant.Size = new System.Drawing.Size(221, 20);
-            this.txtBoxSuivant.TabIndex = 2;
-            // 
-            // btnparcourir
-            // 
-            this.btnparcourir.Location = new System.Drawing.Point(409, 125);
-            this.btnparcourir.Name = "btnparcourir";
-            this.btnparcourir.Size = new System.Drawing.Size(111, 23);
-            this.btnparcourir.TabIndex = 3;
-            this.btnparcourir.Text = "Parcourir";
-            this.btnparcourir.UseVisualStyleBackColor = true;
             // 
             // lblChoixDufichierExcel
             // 
@@ -200,6 +239,33 @@
             this.lblChoixDufichierExcel.Size = new System.Drawing.Size(265, 29);
             this.lblChoixDufichierExcel.TabIndex = 4;
             this.lblChoixDufichierExcel.Text = "Choix du fichier Excel";
+            // 
+            // btnparcourir
+            // 
+            this.btnparcourir.Location = new System.Drawing.Point(409, 125);
+            this.btnparcourir.Name = "btnparcourir";
+            this.btnparcourir.Size = new System.Drawing.Size(111, 23);
+            this.btnparcourir.TabIndex = 3;
+            this.btnparcourir.Text = "Parcourir";
+            this.btnparcourir.UseVisualStyleBackColor = true;
+            this.btnparcourir.Click += new System.EventHandler(this.btnparcourir_Click);
+            // 
+            // tbxExcelFile
+            // 
+            this.tbxExcelFile.Location = new System.Drawing.Point(182, 125);
+            this.tbxExcelFile.Name = "tbxExcelFile";
+            this.tbxExcelFile.Size = new System.Drawing.Size(221, 20);
+            this.tbxExcelFile.TabIndex = 2;
+            // 
+            // lblCheminFichier
+            // 
+            this.lblCheminFichier.AutoSize = true;
+            this.lblCheminFichier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCheminFichier.Location = new System.Drawing.Point(33, 125);
+            this.lblCheminFichier.Name = "lblCheminFichier";
+            this.lblCheminFichier.Size = new System.Drawing.Size(143, 20);
+            this.lblCheminFichier.TabIndex = 1;
+            this.lblCheminFichier.Text = "Chemin du fichier : ";
             // 
             // tabctrl
             // 
@@ -213,16 +279,7 @@
             this.tabctrl.ShowToolTips = true;
             this.tabctrl.Size = new System.Drawing.Size(533, 294);
             this.tabctrl.TabIndex = 0;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(23, 206);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(139, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Modifier le fichier de noms";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.tabctrl.SelectedIndexChanged += new System.EventHandler(this.tabctrl_SelectedIndexChanged);
             // 
             // tabPage4
             // 
@@ -239,59 +296,6 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // lstBoxFeuilles
-            // 
-            this.lstBoxFeuilles.FormattingEnabled = true;
-            this.lstBoxFeuilles.Location = new System.Drawing.Point(151, 89);
-            this.lstBoxFeuilles.Name = "lstBoxFeuilles";
-            this.lstBoxFeuilles.Size = new System.Drawing.Size(84, 173);
-            this.lstBoxFeuilles.TabIndex = 2;
-            // 
-            // chckBoxSuppFeuille
-            // 
-            this.chckBoxSuppFeuille.AutoSize = true;
-            this.chckBoxSuppFeuille.Location = new System.Drawing.Point(263, 95);
-            this.chckBoxSuppFeuille.Name = "chckBoxSuppFeuille";
-            this.chckBoxSuppFeuille.Size = new System.Drawing.Size(149, 17);
-            this.chckBoxSuppFeuille.TabIndex = 3;
-            this.chckBoxSuppFeuille.Text = "Supprimer la feuille clonée";
-            this.chckBoxSuppFeuille.UseVisualStyleBackColor = true;
-            // 
-            // lblChoixCellule
-            // 
-            this.lblChoixCellule.AutoSize = true;
-            this.lblChoixCellule.Location = new System.Drawing.Point(260, 115);
-            this.lblChoixCellule.Name = "lblChoixCellule";
-            this.lblChoixCellule.Size = new System.Drawing.Size(120, 13);
-            this.lblChoixCellule.TabIndex = 4;
-            this.lblChoixCellule.Text = "Choix de la cellule excel";
-            // 
-            // lblChoixfeuilleCloner
-            // 
-            this.lblChoixfeuilleCloner.AutoSize = true;
-            this.lblChoixfeuilleCloner.Location = new System.Drawing.Point(6, 75);
-            this.lblChoixfeuilleCloner.Name = "lblChoixfeuilleCloner";
-            this.lblChoixfeuilleCloner.Size = new System.Drawing.Size(157, 13);
-            this.lblChoixfeuilleCloner.TabIndex = 7;
-            this.lblChoixfeuilleCloner.Text = "Séléctionner la feuille à cloner : ";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(263, 131);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(117, 20);
-            this.textBox1.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(115, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(255, 29);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Clonage de la feuille";
             // 
             // label4
             // 
@@ -315,9 +319,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(10, 67);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(157, 13);
+            this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Séléctionner la feuille à cloner : ";
+            this.label5.Text = "List des noms";
             // 
             // label6
             // 
@@ -341,10 +345,14 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(155, 81);
+            this.listBox1.Location = new System.Drawing.Point(78, 83);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(84, 173);
             this.listBox1.TabIndex = 10;
+            // 
+            // opdFiles
+            // 
+            this.opdFiles.FileName = "opdFiles";
             // 
             // Form1
             // 
@@ -382,7 +390,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label lblChoixDufichierExcel;
         private System.Windows.Forms.Button btnparcourir;
-        private System.Windows.Forms.TextBox txtBoxSuivant;
+        private System.Windows.Forms.TextBox tbxExcelFile;
         private System.Windows.Forms.Label lblCheminFichier;
         private System.Windows.Forms.TabControl tabctrl;
         private System.Windows.Forms.Label label1;
@@ -398,6 +406,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.OpenFileDialog opdFiles;
     }
 }
 
