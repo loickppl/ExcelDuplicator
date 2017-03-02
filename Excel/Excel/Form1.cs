@@ -38,6 +38,7 @@ namespace Excel
 
         private void btnPrecedent_Click(object sender, EventArgs e)
         {
+            
             btnSuivant.Show();
             if (tabctrl.SelectedIndex <= 1)
             {
@@ -48,6 +49,7 @@ namespace Excel
             else
             {
                 tabctrl.SelectedIndex--;
+                tabctrl.TabIndex--;
                 if (tabctrl.SelectedIndex < 2)
                 {
                     btnSuivant.Text = "Suivant";
@@ -63,6 +65,7 @@ namespace Excel
         private void button2_Click(object sender, EventArgs e)
         {
             tabctrl.SelectedIndex = 3;
+            tabctrl.TabIndex = 3;
             btnSuivant.Hide();
         }
     }
