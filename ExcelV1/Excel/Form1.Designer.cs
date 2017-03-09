@@ -51,12 +51,14 @@
             this.tabctrl = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.txtBoxNom = new System.Windows.Forms.TextBox();
+            this.lblListNoms = new System.Windows.Forms.Label();
+            this.lblAjoutNom = new System.Windows.Forms.Label();
+            this.chkBDelNom = new System.Windows.Forms.CheckBox();
             this.lstBoxNoms = new System.Windows.Forms.ListBox();
             this.opdFiles = new System.Windows.Forms.OpenFileDialog();
+            this.sfdFile = new System.Windows.Forms.SaveFileDialog();
+            this.btnAjoutNom = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -285,11 +287,12 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btnAjoutNom);
             this.tabPage4.Controls.Add(this.label4);
-            this.tabPage4.Controls.Add(this.textBox3);
-            this.tabPage4.Controls.Add(this.label5);
-            this.tabPage4.Controls.Add(this.label6);
-            this.tabPage4.Controls.Add(this.checkBox1);
+            this.tabPage4.Controls.Add(this.txtBoxNom);
+            this.tabPage4.Controls.Add(this.lblListNoms);
+            this.tabPage4.Controls.Add(this.lblAjoutNom);
+            this.tabPage4.Controls.Add(this.chkBDelNom);
             this.tabPage4.Controls.Add(this.lstBoxNoms);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -309,52 +312,64 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Gestion de noms";
             // 
-            // textBox3
+            // txtBoxNom
             // 
-            this.textBox3.Location = new System.Drawing.Point(267, 123);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(117, 20);
-            this.textBox3.TabIndex = 14;
+            this.txtBoxNom.Location = new System.Drawing.Point(267, 123);
+            this.txtBoxNom.Name = "txtBoxNom";
+            this.txtBoxNom.Size = new System.Drawing.Size(117, 20);
+            this.txtBoxNom.TabIndex = 14;
             // 
-            // label5
+            // lblListNoms
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 67);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "List des noms";
+            this.lblListNoms.AutoSize = true;
+            this.lblListNoms.Location = new System.Drawing.Point(10, 67);
+            this.lblListNoms.Name = "lblListNoms";
+            this.lblListNoms.Size = new System.Drawing.Size(71, 13);
+            this.lblListNoms.TabIndex = 13;
+            this.lblListNoms.Text = "List des noms";
             // 
-            // label6
+            // lblAjoutNom
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(264, 107);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Choix de la cellule excel";
+            this.lblAjoutNom.AutoSize = true;
+            this.lblAjoutNom.Location = new System.Drawing.Point(264, 107);
+            this.lblAjoutNom.Name = "lblAjoutNom";
+            this.lblAjoutNom.Size = new System.Drawing.Size(80, 13);
+            this.lblAjoutNom.TabIndex = 12;
+            this.lblAjoutNom.Text = "Ajouter un Nom";
             // 
-            // checkBox1
+            // chkBDelNom
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(267, 87);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(149, 17);
-            this.checkBox1.TabIndex = 11;
-            this.checkBox1.Text = "Supprimer la feuille clonée";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkBDelNom.AutoSize = true;
+            this.chkBDelNom.Location = new System.Drawing.Point(267, 87);
+            this.chkBDelNom.Name = "chkBDelNom";
+            this.chkBDelNom.Size = new System.Drawing.Size(167, 17);
+            this.chkBDelNom.TabIndex = 11;
+            this.chkBDelNom.Text = "Supprimer le nom séléctionné ";
+            this.chkBDelNom.UseVisualStyleBackColor = true;
+            this.chkBDelNom.CheckedChanged += new System.EventHandler(this.chkBDelNom_CheckedChanged);
             // 
             // lstBoxNoms
             // 
             this.lstBoxNoms.FormattingEnabled = true;
             this.lstBoxNoms.Location = new System.Drawing.Point(78, 83);
             this.lstBoxNoms.Name = "lstBoxNoms";
+            this.lstBoxNoms.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lstBoxNoms.Size = new System.Drawing.Size(84, 173);
             this.lstBoxNoms.TabIndex = 10;
             // 
             // opdFiles
             // 
             this.opdFiles.FileName = "opdFiles";
+            // 
+            // btnAjoutNom
+            // 
+            this.btnAjoutNom.Location = new System.Drawing.Point(267, 150);
+            this.btnAjoutNom.Name = "btnAjoutNom";
+            this.btnAjoutNom.Size = new System.Drawing.Size(75, 23);
+            this.btnAjoutNom.TabIndex = 16;
+            this.btnAjoutNom.Text = "Ajouter";
+            this.btnAjoutNom.UseVisualStyleBackColor = true;
+            this.btnAjoutNom.Click += new System.EventHandler(this.btnAjoutNom_Click);
             // 
             // Form1
             // 
@@ -403,12 +418,14 @@
         private System.Windows.Forms.ListBox lstBoxFeuilles;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox txtBoxNom;
+        private System.Windows.Forms.Label lblListNoms;
+        private System.Windows.Forms.Label lblAjoutNom;
+        private System.Windows.Forms.CheckBox chkBDelNom;
         private System.Windows.Forms.ListBox lstBoxNoms;
         private System.Windows.Forms.OpenFileDialog opdFiles;
+        private System.Windows.Forms.SaveFileDialog sfdFile;
+        private System.Windows.Forms.Button btnAjoutNom;
     }
 }
 

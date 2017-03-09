@@ -52,7 +52,7 @@ namespace ReplicationExcel
          *      sheet_id : id de la feuille à copier, le premier index est 0
          *      students_list : liste des élèves
         */
-        public void GenerateCopies(int sheet_id, List<string> students_list)
+        public void GenerateCopies(int sheet_id, List<string> students_list, System.Windows.Forms.CheckBox chk)
         {
             Sheet = WorkBook.Sheets.get_Item(sheet_id + 1);
             int insert_sheets_at = WorkBook.Sheets.Count;
@@ -67,6 +67,10 @@ namespace ReplicationExcel
 
                 JustInserted = WorkBook.Sheets.get_Item(insert_sheets_at + i + 1);
                 JustInserted.Name = students_list[i];
+            }
+            if (chk.Checked)
+            {
+                Sheet.Delete();
             }
         }
 

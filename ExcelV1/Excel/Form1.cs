@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,6 +54,54 @@ namespace Excel
             {
                 tabctrl.SelectedIndex++;
                 btnSuivant.Text = "Suivant";
+            }
+            if (tabctrl.TabIndex == 3)
+            {
+                List<string> listName = new List<string>();
+
+                for (int i = 0; i < lstBoxNoms.Items.Count; i++)
+                {
+                    listName.Add(lstBoxNoms.Items[i].ToString());
+                }
+
+                bool problemNameOK = true; ;
+                if (listName.Count == 0)
+                {
+                    DialogResult message = MessageBox.Show("Il n'y a pas de nom a copier pour créer les feuilles. Si vous voulez continuer (le fichier sera créer avec seulement le template), cliquez sur suivant", "Pas de noms", MessageBoxButtons.OKCancel);
+                    if (message == DialogResult.Cancel)
+                    {
+                        problemNameOK = false;
+                    }
+                }
+                if (problemNameOK)
+                {
+                    sfdFile.Title = "Enregistrer le fichier modifié";
+                    sfdFile.Filter = "excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                    sfdFile.FileName = "Votre fichier d'enregistrement des feuilles excel modifiée.xlsx";
+                    sfdFile.AddExtension = true;
+                    sfdFile.DefaultExt = "xlsx";
+                    sfdFile.FilterIndex = 1;
+                    sfdFile.ShowDialog();
+                    string fileSave = sfdFile.FileName;
+                    string[] tableauSeparationPoint = fileSave.Split('.');
+                    string ext = tableauSeparationPoint[tableauSeparationPoint.Count() - 1].Trim();
+                    if (fileSave != "" && fileSave != "Votre fichier d'enregistrement des feuilles excel modifiée.xlsx" && ext == "xlsx")
+                    {
+                        if (File.Exists(fileSave))
+                        {
+                            File.Delete(fileSave);
+                        }
+
+                        excelManager.GenerateCopies(lstBoxFeuilles.SelectedIndex, listName,chckBoxSuppFeuille);
+                        excelManager.SaveAs(fileSave);
+
+                        MessageBox.Show("Votre fichier a bien été créer à l'emplacement séléctionné", "Fichier créer");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Votre nom de fichier n'est pas accepté. Mauvaise extension ou pas de nom", "Fichier érroné");
+                    }
+                }
             }       
         }
 
@@ -166,5 +215,28 @@ namespace Excel
                 MessageBox.Show("Votre nom de fichier n'est pas accepté. Mauvaise extension ou pas de nom", "Fichier éronné");
             }
         }
+
+        private void chkBDelNom_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkBDelNom.Checked)
+            {
+                ListBox.SelectedObjectCollection selections;
+                selections = lstBoxNoms.SelectedItems;
+
+                while (selections.Count > 0)
+                {
+                    lstBoxNoms.Items.Remove(selections[0]);
+                }
+                chkBDelNom.Checked = false;
+            }
+
+        }
+
+        private void btnAjoutNom_Click(object sender, EventArgs e)
+        {
+            lstBoxNoms.Items.Add(txtBoxNom.Text);
+        }
+
+
     }
 }
