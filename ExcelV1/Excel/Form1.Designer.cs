@@ -38,7 +38,6 @@
             this.lblFihcierNom = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblChoixfeuilleCloner = new System.Windows.Forms.Label();
             this.lblChoixCellule = new System.Windows.Forms.Label();
             this.chckBoxSuppFeuille = new System.Windows.Forms.CheckBox();
@@ -50,6 +49,7 @@
             this.lblCheminFichier = new System.Windows.Forms.Label();
             this.tabctrl = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnAjoutNom = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtBoxNom = new System.Windows.Forms.TextBox();
             this.lblListNoms = new System.Windows.Forms.Label();
@@ -58,7 +58,7 @@
             this.lstBoxNoms = new System.Windows.Forms.ListBox();
             this.opdFiles = new System.Windows.Forms.OpenFileDialog();
             this.sfdFile = new System.Windows.Forms.SaveFileDialog();
-            this.btnAjoutNom = new System.Windows.Forms.Button();
+            this.btnPlage = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -110,7 +110,7 @@
             this.btnModifierNom.TabIndex = 11;
             this.btnModifierNom.Text = "Modifier le fichier de noms";
             this.btnModifierNom.UseVisualStyleBackColor = true;
-            this.btnModifierNom.Click += new System.EventHandler(this.button2_Click);
+            this.btnModifierNom.Click += new System.EventHandler(this.btnModifierNom_Click);
             // 
             // label3
             // 
@@ -138,6 +138,7 @@
             this.txtBoxFichierNom.Name = "txtBoxFichierNom";
             this.txtBoxFichierNom.Size = new System.Drawing.Size(221, 20);
             this.txtBoxFichierNom.TabIndex = 5;
+            this.txtBoxFichierNom.TextChanged += new System.EventHandler(this.txtBoxFichierNom_TextChanged);
             // 
             // lblFihcierNom
             // 
@@ -151,8 +152,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnPlage);
             this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.lblChoixfeuilleCloner);
             this.tabPage2.Controls.Add(this.lblChoixCellule);
             this.tabPage2.Controls.Add(this.chckBoxSuppFeuille);
@@ -174,14 +175,6 @@
             this.label1.Size = new System.Drawing.Size(255, 29);
             this.label1.TabIndex = 9;
             this.label1.Text = "Clonage de la feuille";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(263, 131);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(117, 20);
-            this.textBox1.TabIndex = 8;
             // 
             // lblChoixfeuilleCloner
             // 
@@ -260,6 +253,7 @@
             this.tbxExcelFile.Name = "tbxExcelFile";
             this.tbxExcelFile.Size = new System.Drawing.Size(221, 20);
             this.tbxExcelFile.TabIndex = 2;
+            this.tbxExcelFile.TextChanged += new System.EventHandler(this.tbxExcelFile_TextChanged);
             // 
             // lblCheminFichier
             // 
@@ -283,7 +277,6 @@
             this.tabctrl.ShowToolTips = true;
             this.tabctrl.Size = new System.Drawing.Size(533, 294);
             this.tabctrl.TabIndex = 0;
-            this.tabctrl.SelectedIndexChanged += new System.EventHandler(this.tabctrl_SelectedIndexChanged);
             // 
             // tabPage4
             // 
@@ -301,6 +294,16 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnAjoutNom
+            // 
+            this.btnAjoutNom.Location = new System.Drawing.Point(267, 150);
+            this.btnAjoutNom.Name = "btnAjoutNom";
+            this.btnAjoutNom.Size = new System.Drawing.Size(75, 23);
+            this.btnAjoutNom.TabIndex = 16;
+            this.btnAjoutNom.Text = "Ajouter";
+            this.btnAjoutNom.UseVisualStyleBackColor = true;
+            this.btnAjoutNom.Click += new System.EventHandler(this.btnAjoutNom_Click);
             // 
             // label4
             // 
@@ -361,15 +364,15 @@
             // 
             this.opdFiles.FileName = "opdFiles";
             // 
-            // btnAjoutNom
+            // btnPlage
             // 
-            this.btnAjoutNom.Location = new System.Drawing.Point(267, 150);
-            this.btnAjoutNom.Name = "btnAjoutNom";
-            this.btnAjoutNom.Size = new System.Drawing.Size(75, 23);
-            this.btnAjoutNom.TabIndex = 16;
-            this.btnAjoutNom.Text = "Ajouter";
-            this.btnAjoutNom.UseVisualStyleBackColor = true;
-            this.btnAjoutNom.Click += new System.EventHandler(this.btnAjoutNom_Click);
+            this.btnPlage.Location = new System.Drawing.Point(263, 131);
+            this.btnPlage.Name = "btnPlage";
+            this.btnPlage.Size = new System.Drawing.Size(117, 23);
+            this.btnPlage.TabIndex = 10;
+            this.btnPlage.Text = "Choisir la plage";
+            this.btnPlage.UseVisualStyleBackColor = true;
+            this.btnPlage.Click += new System.EventHandler(this.btnPlage_Click);
             // 
             // Form1
             // 
@@ -379,8 +382,11 @@
             this.Controls.Add(this.btnSuivant);
             this.Controls.Add(this.btnPrecedent);
             this.Controls.Add(this.tabctrl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Excel Duplicator";
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -411,7 +417,6 @@
         private System.Windows.Forms.Label lblCheminFichier;
         private System.Windows.Forms.TabControl tabctrl;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblChoixfeuilleCloner;
         private System.Windows.Forms.Label lblChoixCellule;
         private System.Windows.Forms.CheckBox chckBoxSuppFeuille;
@@ -426,6 +431,7 @@
         private System.Windows.Forms.OpenFileDialog opdFiles;
         private System.Windows.Forms.SaveFileDialog sfdFile;
         private System.Windows.Forms.Button btnAjoutNom;
+        private System.Windows.Forms.Button btnPlage;
     }
 }
 

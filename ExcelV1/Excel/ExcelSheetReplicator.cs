@@ -20,7 +20,12 @@ namespace ReplicationExcel
         Workbook WorkBook             = null;
         Application ExcelApplication  = null;
         Worksheet Sheet               = null;
-        
+        Worksheet SheetElevesNotes = null;
+        int row;
+        int col;
+        int row_count;
+        int col_count;
+
         // Ouvre le classeur à l'emplacement spécifié par path
         public void Initialize(string path)
         {
@@ -30,6 +35,7 @@ namespace ReplicationExcel
             ExcelApplication.Visible = false;
 
             WorkBook = ExcelApplication.Workbooks.Open(ClasseurPath);
+
         }
 
         // Récupère la liste des feuilles dans le claseur
@@ -55,19 +61,35 @@ namespace ReplicationExcel
         public void GenerateCopies(int sheet_id, List<string> students_list, System.Windows.Forms.CheckBox chk)
         {
             Sheet = WorkBook.Sheets.get_Item(sheet_id + 1);
+            SheetElevesNotes = WorkBook.Sheets.get_Item(1);
+            for (int y = 0; y < row_count; y++)
+            {
+                if (y < students_list.Count)
+                {
+                    SheetElevesNotes.Cells[y + row, col] = students_list[y];
+                }
+                else
+                {
+                    SheetElevesNotes.Cells[y + row, col] = "";
+                }
+
+            }
+
             int insert_sheets_at = WorkBook.Sheets.Count;
 
             Worksheet InsertAfter = null;
             Worksheet JustInserted = null;
 
+
+
             for (int i = 0; i < students_list.Count; i++)
             {
                 InsertAfter = WorkBook.Sheets.get_Item(insert_sheets_at + i);
                 Sheet.Copy(System.Reflection.Missing.Value, InsertAfter);
-
                 JustInserted = WorkBook.Sheets.get_Item(insert_sheets_at + i + 1);
                 JustInserted.Name = students_list[i];
             }
+
             if (chk.Checked)
             {
                 Sheet.Delete();
@@ -79,12 +101,28 @@ namespace ReplicationExcel
         {
             WorkBook.SaveCopyAs(location);
         }
-		  
+
         // Ferme le classeur
         public void Close()
         {
             WorkBook.Saved = true;
-            ExcelApplication.Quit();
+            //ExcelApplication.Quit();
+        }
+
+        public void SelectPlage()
+        {
+            ExcelApplication.Visible = true;
+            ExcelApplication.Application.SheetSelectionChange += Application_SheetSelectionChange;
+            Microsoft.Office.Interop.Excel.Range SelectedRange = ExcelApplication.Application.Selection as Microsoft.Office.Interop.Excel.Range;
+        }
+
+        private void Application_SheetSelectionChange(object Sh, Range Target)
+        {
+            row = Target.Row;   // ligne
+            col = Target.Column;  // colonne
+            row_count = Target.EntireRow.Count;  // nb ligne
+            col_count = Target.EntireColumn.Count;  // nb colonne
+            ExcelApplication.Visible = false;
         }
     }
 }

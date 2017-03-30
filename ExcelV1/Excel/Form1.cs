@@ -42,106 +42,149 @@ namespace Excel
 
         private void btnSuivant_Click(object sender, EventArgs e)
         {
-            btnSuivant.Enabled = false;
-            btnPrecedent.Show();
+            switch (tabctrl.TabIndex)
+            {
+                case 0:
+                    choixExcelSuivant();
+                    break;
+                case 1:
+                    clonageFeuilleSuivant();
+                    break;
+                case 2:
+                    choixNomSuivant();
+                    break;
+                case 3:
+                    gestionNomSuivant();
+                    break;
+            }
             tabctrl.TabIndex++;
-            if (tabctrl.TabIndex == 2)
+        }
+
+        private void choixExcelSuivant()
+        {
+            btnPrecedent.Show();
+            btnSuivant.Text = "Suivant";
+            tabctrl.SelectedIndex++;
+            lstBoxFeuilles_SelectedIndexChanged(this,new EventArgs());
+        }
+
+        private void clonageFeuilleSuivant()
+        {
+            btnPrecedent.Show();
+            btnSuivant.Text = "Générer fichier";
+            tabctrl.SelectedIndex++;
+            txtBoxFichierNom_TextChanged(this, new EventArgs());
+        }
+
+        private void choixNomSuivant()
+        {
+            btnPrecedent.Show();
+            tabctrl.TabIndex--;
+            List<string> listName = new List<string>();
+
+            for (int i = 0; i < lstBoxNoms.Items.Count; i++)
             {
-                btnSuivant.Text = "Générer fichier";
-                tabctrl.SelectedIndex++;
+                listName.Add(lstBoxNoms.Items[i].ToString());
             }
-            else if(tabctrl.TabIndex < 2)
+
+            sfdFile.Title = "Enregistrer le fichier modifié";
+            sfdFile.Filter = "excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            sfdFile.FileName = "Votre fichier d'enregistrement des feuilles excel modifiée.xlsx";
+            sfdFile.AddExtension = true;
+            sfdFile.DefaultExt = "xlsx";
+            sfdFile.FilterIndex = 1;
+            DialogResult res = sfdFile.ShowDialog();
+            if (res == DialogResult.OK)
             {
-                tabctrl.SelectedIndex++;
-                btnSuivant.Text = "Suivant";
+                string fileSave = sfdFile.FileName;
+                if (File.Exists(fileSave))
+                {
+                    File.Delete(fileSave);
+                }
+
+                excelManager.GenerateCopies(lstBoxFeuilles.SelectedIndex, listName, chckBoxSuppFeuille);
+                excelManager.SaveAs(fileSave);
+                excelManager.Close();
+                MessageBox.Show("Votre fichier a bien été créer à l'emplacement séléctionné", "Fichier créer");
             }
-            if (tabctrl.TabIndex == 3)
-            {
-                List<string> listName = new List<string>();
+        }
 
-                for (int i = 0; i < lstBoxNoms.Items.Count; i++)
-                {
-                    listName.Add(lstBoxNoms.Items[i].ToString());
-                }
-
-                bool problemNameOK = true; ;
-                if (listName.Count == 0)
-                {
-                    DialogResult message = MessageBox.Show("Il n'y a pas de nom a copier pour créer les feuilles. Si vous voulez continuer (le fichier sera créer avec seulement le template), cliquez sur suivant", "Pas de noms", MessageBoxButtons.OKCancel);
-                    if (message == DialogResult.Cancel)
-                    {
-                        problemNameOK = false;
-                    }
-                }
-                if (problemNameOK)
-                {
-                    sfdFile.Title = "Enregistrer le fichier modifié";
-                    sfdFile.Filter = "excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-                    sfdFile.FileName = "Votre fichier d'enregistrement des feuilles excel modifiée.xlsx";
-                    sfdFile.AddExtension = true;
-                    sfdFile.DefaultExt = "xlsx";
-                    sfdFile.FilterIndex = 1;
-                    sfdFile.ShowDialog();
-                    string fileSave = sfdFile.FileName;
-                    string[] tableauSeparationPoint = fileSave.Split('.');
-                    string ext = tableauSeparationPoint[tableauSeparationPoint.Count() - 1].Trim();
-                    if (fileSave != "" && fileSave != "Votre fichier d'enregistrement des feuilles excel modifiée.xlsx" && ext == "xlsx")
-                    {
-                        if (File.Exists(fileSave))
-                        {
-                            File.Delete(fileSave);
-                        }
-
-                        excelManager.GenerateCopies(lstBoxFeuilles.SelectedIndex, listName,chckBoxSuppFeuille);
-                        excelManager.SaveAs(fileSave);
-
-                        MessageBox.Show("Votre fichier a bien été créer à l'emplacement séléctionné", "Fichier créer");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Votre nom de fichier n'est pas accepté. Mauvaise extension ou pas de nom", "Fichier érroné");
-                    }
-                }
-            }       
+        private void gestionNomSuivant()
+        {
+            btnPrecedent.Show();
+            btnSuivant.Text = "Générer fichier";
+            btnPrecedent.Text = "Précédent";
+            tabctrl.TabIndex = 1;
+            tabctrl.SelectedIndex = 2;
         }
 
         private void btnPrecedent_Click(object sender, EventArgs e)
         {
-            
-            btnSuivant.Show();
-            if (tabctrl.SelectedIndex <= 1)
+            switch (tabctrl.TabIndex)
             {
-                btnPrecedent.Hide();
-                tabctrl.SelectedIndex = 0;
-                tabctrl.TabIndex = 0;
+                case 0:
+                    choixExcelPrecedent();
+                    break;
+                case 1:
+                    clonageFeuillePrecedent();
+                    break;
+                case 2:
+                    choixNomPrecedent();
+                    break;
+                case 3:
+                    gestionNomPrecedent();
+                    break;
+            }
+        }
+
+        private void choixExcelPrecedent()
+        {
+            
+        }
+
+        private void clonageFeuillePrecedent()
+        {
+            btnPrecedent.Hide();
+            tabctrl.SelectedIndex = 0;
+            tabctrl.TabIndex = 0;
+            if (tbxExcelFile.Text != "")
+            {
+                btnSuivant.Enabled = true;
             }
             else
             {
-                tabctrl.SelectedIndex--;
-                tabctrl.TabIndex--;
-                if (tabctrl.SelectedIndex < 2)
-                {
-                    btnSuivant.Text = "Suivant";
-                }
+                btnSuivant.Enabled = false;
             }
         }
 
-        private void lblChoixDufichierExcel_Click(object sender, EventArgs e)
+        private void choixNomPrecedent()
         {
-
+            tabctrl.SelectedIndex = 1;
+            tabctrl.TabIndex = 1;
+            btnSuivant.Text = "Suivant";
+            lstBoxFeuilles_SelectedIndexChanged(this, new EventArgs());
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void gestionNomPrecedent()
+        {
+            tabctrl.SelectedIndex = 2;
+            tabctrl.TabIndex = 2;
+            btnSuivant.Text = "Générer fichier";
+            btnPrecedent.Text = "Précédent";
+            txtBoxFichierNom_TextChanged(this, new EventArgs());
+        }
+
+        private void btnModifierNom_Click(object sender, EventArgs e)
         {
             tabctrl.SelectedIndex = 3;
             tabctrl.TabIndex = 3;
-            btnSuivant.Hide();
+            btnSuivant.Text = "Valider";
+            btnPrecedent.Text = "Annuler";
         }
 
         private void btnparcourir_Click(object sender, EventArgs e)
         {
             ParcourirFichier();
-            
         }
 
         private void ParcourirFichier()
@@ -162,12 +205,11 @@ namespace Excel
                 excelManager = new ExcelSheetReplicator();
                 excelManager.Initialize(this.FileExcel);
                 string[] sheetsList = excelManager.GetSheetList();
-
+                lstBoxFeuilles.Items.Clear();
                 foreach (string sheet in sheetsList)
                 {
                     lstBoxFeuilles.Items.Add(sheet);
                 }
-                btnSuivant.Enabled = true;
             }
             else
             {
@@ -175,14 +217,16 @@ namespace Excel
             }
         }
 
-        private void tabctrl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void lstBoxFeuilles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnSuivant.Enabled = true;
+            if (lstBoxFeuilles.SelectedItems.Count <= 0)
+            {
+                btnSuivant.Enabled = false;
+            }
+            else
+            {
+                btnSuivant.Enabled = true;
+            }
         }
 
         private void btnParcourirFichierNom_Click(object sender, EventArgs e)
@@ -208,7 +252,6 @@ namespace Excel
                 {
                     lstBoxNoms.Items.Add(item);
                 }
-                btnSuivant.Enabled = true;
             }
             else
             {
@@ -237,6 +280,50 @@ namespace Excel
             lstBoxNoms.Items.Add(txtBoxNom.Text);
         }
 
+        private void tbxExcelFile_TextChanged(object sender, EventArgs e)
+        {
+            if (tbxExcelFile.Text.Contains("."))
+            {
+                string[] extension = tbxExcelFile.Text.Split('.');
+                if (extension.Last() == "xlsx")
+                {
+                    btnSuivant.Enabled = true;
+                }
+                else
+                {
+                    btnSuivant.Enabled = false;
+                }
+            }
+            else
+            {
+                btnSuivant.Enabled = false;
+            }
+            
+        }
 
+        private void txtBoxFichierNom_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBoxFichierNom.Text.Contains("."))
+            {
+                string[] extension = txtBoxFichierNom.Text.Split('.');
+                if (extension.Last() == "txt")
+                {
+                    btnSuivant.Enabled = true;
+                }
+                else
+                {
+                    btnSuivant.Enabled = false;
+                }
+            }
+            else
+            {
+                btnSuivant.Enabled = false;
+            }
+        }
+
+        private void btnPlage_Click(object sender, EventArgs e)
+        {
+            excelManager.SelectPlage();
+        }
     }
 }
