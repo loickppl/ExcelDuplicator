@@ -37,6 +37,7 @@
             this.txtBoxFichierNom = new System.Windows.Forms.TextBox();
             this.lblFihcierNom = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnPlage = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblChoixfeuilleCloner = new System.Windows.Forms.Label();
             this.lblChoixCellule = new System.Windows.Forms.Label();
@@ -54,11 +55,10 @@
             this.txtBoxNom = new System.Windows.Forms.TextBox();
             this.lblListNoms = new System.Windows.Forms.Label();
             this.lblAjoutNom = new System.Windows.Forms.Label();
-            this.chkBDelNom = new System.Windows.Forms.CheckBox();
             this.lstBoxNoms = new System.Windows.Forms.ListBox();
             this.opdFiles = new System.Windows.Forms.OpenFileDialog();
             this.sfdFile = new System.Windows.Forms.SaveFileDialog();
-            this.btnPlage = new System.Windows.Forms.Button();
+            this.btnSupprimerNom = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -165,6 +165,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnPlage
+            // 
+            this.btnPlage.Location = new System.Drawing.Point(263, 131);
+            this.btnPlage.Name = "btnPlage";
+            this.btnPlage.Size = new System.Drawing.Size(117, 23);
+            this.btnPlage.TabIndex = 10;
+            this.btnPlage.Text = "Choisir la plage";
+            this.btnPlage.UseVisualStyleBackColor = true;
+            this.btnPlage.Click += new System.EventHandler(this.btnPlage_Click);
             // 
             // label1
             // 
@@ -280,12 +290,12 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btnSupprimerNom);
             this.tabPage4.Controls.Add(this.btnAjoutNom);
             this.tabPage4.Controls.Add(this.label4);
             this.tabPage4.Controls.Add(this.txtBoxNom);
             this.tabPage4.Controls.Add(this.lblListNoms);
             this.tabPage4.Controls.Add(this.lblAjoutNom);
-            this.tabPage4.Controls.Add(this.chkBDelNom);
             this.tabPage4.Controls.Add(this.lstBoxNoms);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -299,7 +309,7 @@
             // 
             this.btnAjoutNom.Location = new System.Drawing.Point(267, 150);
             this.btnAjoutNom.Name = "btnAjoutNom";
-            this.btnAjoutNom.Size = new System.Drawing.Size(75, 23);
+            this.btnAjoutNom.Size = new System.Drawing.Size(173, 23);
             this.btnAjoutNom.TabIndex = 16;
             this.btnAjoutNom.Text = "Ajouter";
             this.btnAjoutNom.UseVisualStyleBackColor = true;
@@ -319,7 +329,7 @@
             // 
             this.txtBoxNom.Location = new System.Drawing.Point(267, 123);
             this.txtBoxNom.Name = "txtBoxNom";
-            this.txtBoxNom.Size = new System.Drawing.Size(117, 20);
+            this.txtBoxNom.Size = new System.Drawing.Size(173, 20);
             this.txtBoxNom.TabIndex = 14;
             // 
             // lblListNoms
@@ -340,17 +350,6 @@
             this.lblAjoutNom.TabIndex = 12;
             this.lblAjoutNom.Text = "Ajouter un Nom";
             // 
-            // chkBDelNom
-            // 
-            this.chkBDelNom.AutoSize = true;
-            this.chkBDelNom.Location = new System.Drawing.Point(267, 87);
-            this.chkBDelNom.Name = "chkBDelNom";
-            this.chkBDelNom.Size = new System.Drawing.Size(167, 17);
-            this.chkBDelNom.TabIndex = 11;
-            this.chkBDelNom.Text = "Supprimer le nom séléctionné ";
-            this.chkBDelNom.UseVisualStyleBackColor = true;
-            this.chkBDelNom.CheckedChanged += new System.EventHandler(this.chkBDelNom_CheckedChanged);
-            // 
             // lstBoxNoms
             // 
             this.lstBoxNoms.FormattingEnabled = true;
@@ -364,15 +363,22 @@
             // 
             this.opdFiles.FileName = "opdFiles";
             // 
-            // btnPlage
+            // sfdFile
             // 
-            this.btnPlage.Location = new System.Drawing.Point(263, 131);
-            this.btnPlage.Name = "btnPlage";
-            this.btnPlage.Size = new System.Drawing.Size(117, 23);
-            this.btnPlage.TabIndex = 10;
-            this.btnPlage.Text = "Choisir la plage";
-            this.btnPlage.UseVisualStyleBackColor = true;
-            this.btnPlage.Click += new System.EventHandler(this.btnPlage_Click);
+            this.sfdFile.DefaultExt = "xlsx";
+            this.sfdFile.FileName = "fichierExcel.xlsx";
+            this.sfdFile.Filter = "excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            this.sfdFile.Title = "Enregistrer le fichier modifié";
+            // 
+            // btnSupprimerNom
+            // 
+            this.btnSupprimerNom.Location = new System.Drawing.Point(267, 179);
+            this.btnSupprimerNom.Name = "btnSupprimerNom";
+            this.btnSupprimerNom.Size = new System.Drawing.Size(173, 23);
+            this.btnSupprimerNom.TabIndex = 17;
+            this.btnSupprimerNom.Text = "Supprimer nom(s)  séléctionné(s)";
+            this.btnSupprimerNom.UseVisualStyleBackColor = true;
+            this.btnSupprimerNom.Click += new System.EventHandler(this.btnSupprimerNom_Click);
             // 
             // Form1
             // 
@@ -426,12 +432,12 @@
         private System.Windows.Forms.TextBox txtBoxNom;
         private System.Windows.Forms.Label lblListNoms;
         private System.Windows.Forms.Label lblAjoutNom;
-        private System.Windows.Forms.CheckBox chkBDelNom;
         private System.Windows.Forms.ListBox lstBoxNoms;
         private System.Windows.Forms.OpenFileDialog opdFiles;
         private System.Windows.Forms.SaveFileDialog sfdFile;
         private System.Windows.Forms.Button btnAjoutNom;
         private System.Windows.Forms.Button btnPlage;
+        private System.Windows.Forms.Button btnSupprimerNom;
     }
 }
 

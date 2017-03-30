@@ -17,6 +17,8 @@ namespace Excel
     {
         private string _fileExcel = "";
         public ExcelSheetReplicator excelManager = null;
+        List<string> nomASupp;
+        bool plage = false;
 
         public string FileExcel
         {
@@ -87,25 +89,12 @@ namespace Excel
                 listName.Add(lstBoxNoms.Items[i].ToString());
             }
 
-            sfdFile.Title = "Enregistrer le fichier modifié";
-            sfdFile.Filter = "excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-            sfdFile.FileName = "Votre fichier d'enregistrement des feuilles excel modifiée.xlsx";
-            sfdFile.AddExtension = true;
-            sfdFile.DefaultExt = "xlsx";
-            sfdFile.FilterIndex = 1;
             DialogResult res = sfdFile.ShowDialog();
             if (res == DialogResult.OK)
             {
-                string fileSave = sfdFile.FileName;
-                if (File.Exists(fileSave))
-                {
-                    File.Delete(fileSave);
-                }
-
                 excelManager.GenerateCopies(lstBoxFeuilles.SelectedIndex, listName, chckBoxSuppFeuille);
-                excelManager.SaveAs(fileSave);
+                excelManager.SaveAs(sfdFile.FileName);
                 excelManager.Close();
-                MessageBox.Show("Votre fichier a bien été créer à l'emplacement séléctionné", "Fichier créer");
             }
         }
 
@@ -116,6 +105,10 @@ namespace Excel
             btnPrecedent.Text = "Précédent";
             tabctrl.TabIndex = 1;
             tabctrl.SelectedIndex = 2;
+            foreach (var nom in nomASupp)
+            {
+                lstBoxNoms.Items.Remove(nom);
+            }
         }
 
         private void btnPrecedent_Click(object sender, EventArgs e)
@@ -172,6 +165,8 @@ namespace Excel
             btnSuivant.Text = "Générer fichier";
             btnPrecedent.Text = "Précédent";
             txtBoxFichierNom_TextChanged(this, new EventArgs());
+            nomASupp.Clear();
+            lstBoxNoms.ClearSelected();
         }
 
         private void btnModifierNom_Click(object sender, EventArgs e)
@@ -180,6 +175,7 @@ namespace Excel
             tabctrl.TabIndex = 3;
             btnSuivant.Text = "Valider";
             btnPrecedent.Text = "Annuler";
+
         }
 
         private void btnparcourir_Click(object sender, EventArgs e)
@@ -219,13 +215,13 @@ namespace Excel
 
         private void lstBoxFeuilles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstBoxFeuilles.SelectedItems.Count <= 0)
+            if (lstBoxFeuilles.SelectedItems.Count > 0 && plage == true)
             {
-                btnSuivant.Enabled = false;
+                btnSuivant.Enabled = true;
             }
             else
             {
-                btnSuivant.Enabled = true;
+                btnSuivant.Enabled = false;
             }
         }
 
@@ -259,22 +255,6 @@ namespace Excel
             }
         }
 
-        private void chkBDelNom_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkBDelNom.Checked)
-            {
-                ListBox.SelectedObjectCollection selections;
-                selections = lstBoxNoms.SelectedItems;
-
-                while (selections.Count > 0)
-                {
-                    lstBoxNoms.Items.Remove(selections[0]);
-                }
-                chkBDelNom.Checked = false;
-            }
-
-        }
-
         private void btnAjoutNom_Click(object sender, EventArgs e)
         {
             lstBoxNoms.Items.Add(txtBoxNom.Text);
@@ -298,7 +278,6 @@ namespace Excel
             {
                 btnSuivant.Enabled = false;
             }
-            
         }
 
         private void txtBoxFichierNom_TextChanged(object sender, EventArgs e)
@@ -324,6 +303,20 @@ namespace Excel
         private void btnPlage_Click(object sender, EventArgs e)
         {
             excelManager.SelectPlage();
+            plage = true;
+            lstBoxFeuilles_SelectedIndexChanged(this,new EventArgs());
+        }
+
+        private void btnSupprimerNom_Click(object sender, EventArgs e)
+        {
+            ListBox.SelectedObjectCollection selections;
+            selections = lstBoxNoms.SelectedItems;
+            nomASupp = new List<string>();
+
+            foreach (var nom in selections)
+            {
+                nomASupp.Add(nom.ToString());
+            }
         }
     }
 }

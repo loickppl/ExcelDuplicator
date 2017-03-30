@@ -43,3 +43,12 @@ C:\Users\PIPOLOL_INFO\Desktop\ExcelV1\Excel\obj\Debug\Excel.csprojResolveAssembl
 C:\Users\PIPOLOL_INFO\Desktop\ExcelV1\Excel\obj\Debug\Excel.Form1.resources
 C:\Users\PIPOLOL_INFO\Desktop\ExcelV1\Excel\obj\Debug\Excel.Properties.Resources.resources
 C:\Users\PIPOLOL_INFO\Desktop\ExcelV1\Excel\obj\Debug\Excel.csproj.GenerateResource.Cache
+C:\Users\trifunovii_info\Desktop\ExcelV1\Excel\bin\Debug\Excel.exe.config
+C:\Users\trifunovii_info\Desktop\ExcelV1\Excel\obj\Debug\Excel.exe
+C:\Users\trifunovii_info\Desktop\ExcelV1\Excel\obj\Debug\Excel.pdb
+C:\Users\trifunovii_info\Desktop\ExcelV1\Excel\bin\Debug\Excel.exe
+C:\Users\trifunovii_info\Desktop\ExcelV1\Excel\bin\Debug\Excel.pdb
+C:\Users\trifunovii_info\Desktop\ExcelV1\Excel\obj\Debug\Excel.csprojResolveAssemblyReference.cache
+C:\Users\trifunovii_info\Desktop\ExcelV1\Excel\obj\Debug\Excel.Form1.resources
+C:\Users\trifunovii_info\Desktop\ExcelV1\Excel\obj\Debug\Excel.Properties.Resources.resources
+C:\Users\trifunovii_info\Desktop\ExcelV1\Excel\obj\Debug\Excel.csproj.GenerateResource.Cache
