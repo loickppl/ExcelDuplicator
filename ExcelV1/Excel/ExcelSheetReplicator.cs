@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 
+
 namespace ReplicationExcel
 {
     public class ExcelSheetReplicator
@@ -21,10 +22,62 @@ namespace ReplicationExcel
         Application ExcelApplication  = null;
         Worksheet Sheet               = null;
         Worksheet SheetElevesNotes = null;
-        int row;
-        int col;
-        int row_count;
-        int col_count;
+        private int row;
+        private int col;
+        private int row_count;
+        private int col_count;
+
+        public int Row
+        {
+            get
+            {
+                return row;
+            }
+
+            set
+            {
+                row = value;
+            }
+        }
+
+        public int Col
+        {
+            get
+            {
+                return col;
+            }
+
+            set
+            {
+                col = value;
+            }
+        }
+
+        public int Row_count
+        {
+            get
+            {
+                return row_count;
+            }
+
+            set
+            {
+                row_count = value;
+            }
+        }
+
+        public int Col_count
+        {
+            get
+            {
+                return col_count;
+            }
+
+            set
+            {
+                col_count = value;
+            }
+        }
 
         // Ouvre le classeur à l'emplacement spécifié par path
         public void Initialize(string path)
@@ -62,15 +115,15 @@ namespace ReplicationExcel
         {
             Sheet = WorkBook.Sheets.get_Item(sheet_id + 1);
             SheetElevesNotes = WorkBook.Sheets.get_Item(1);
-            for (int y = 0; y < row_count; y++)
+            for (int y = 0; y < Row_count; y++)
             {
                 if (y < students_list.Count)
                 {
-                    SheetElevesNotes.Cells[y + row, col] = students_list[y];
+                    SheetElevesNotes.Cells[y + Row, Col] = students_list[y];
                 }
                 else
                 {
-                    SheetElevesNotes.Cells[y + row, col] = "";
+                    SheetElevesNotes.Cells[y + Row, Col] = "";
                 }
 
             }
@@ -106,7 +159,12 @@ namespace ReplicationExcel
         public void Close()
         {
             WorkBook.Saved = true;
-            //ExcelApplication.Quit();
+        }
+
+        public void CloseExcel()
+        {
+            WorkBook.Saved = true;
+            ExcelApplication.Quit();
         }
 
         public void SelectPlage()
@@ -118,10 +176,10 @@ namespace ReplicationExcel
 
         private void Application_SheetSelectionChange(object Sh, Range Target)
         {
-            row = Target.Row;   // ligne
-            col = Target.Column;  // colonne
-            row_count = Target.EntireRow.Count;  // nb ligne
-            col_count = Target.EntireColumn.Count;  // nb colonne
+            Row = Target.Row;   // ligne
+            Col = Target.Column;  // colonne
+            Row_count = Target.EntireRow.Count;  // nb ligne
+            Col_count = Target.EntireColumn.Count;  // nb colonne
             ExcelApplication.Visible = false;
         }
     }

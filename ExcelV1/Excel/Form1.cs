@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Resources.ResXFileRef;
@@ -96,7 +97,11 @@ namespace Excel
             {
                 excelManager.GenerateCopies(lstBoxFeuilles.SelectedIndex, listName, chckBoxSuppFeuille);
                 excelManager.SaveAs(sfdFile.FileName);
-                excelManager.Close();
+                if (MessageBox.Show("Le fichier a été enregistré. Voulez vous quitter ?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    excelManager.Close();
+                    this.Close();
+                }
             }
         }
 
@@ -328,7 +333,10 @@ namespace Excel
         {
             excelManager.SelectPlage();
             plage = true;
-            lstBoxFeuilles_SelectedIndexChanged(this,new EventArgs());
+            lstBoxFeuilles_SelectedIndexChanged(this, new EventArgs());
+            Thread.Sleep(2000);
+            lblPlage.Text = "ligne : " + excelManager.Row.ToString() + "-" + excelManager.Row_count + " / colonne : " + excelManager.Col.ToString() + "-" + excelManager.Col_count.ToString();
+            lblPlage.Visible = true;
         }
 
         private void btnSupprimerNom_Click(object sender, EventArgs e)
@@ -337,6 +345,14 @@ namespace Excel
             {
                 nomASupp.Add(s.ToString());
                 lstBoxNoms.Items.Remove(s);
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (excelManager != null)
+            {
+                excelManager.CloseExcel();
             }
         }
     }

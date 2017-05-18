@@ -59,6 +59,7 @@
             this.lstBoxNoms = new System.Windows.Forms.ListBox();
             this.opdFiles = new System.Windows.Forms.OpenFileDialog();
             this.sfdFile = new System.Windows.Forms.SaveFileDialog();
+            this.lblPlage = new System.Windows.Forms.Label();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -97,7 +98,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(525, 268);
+            this.tabPage3.Size = new System.Drawing.Size(525, 269);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -152,6 +153,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lblPlage);
             this.tabPage2.Controls.Add(this.btnPlage);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.lblChoixfeuilleCloner);
@@ -161,7 +163,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(525, 268);
+            this.tabPage2.Size = new System.Drawing.Size(525, 269);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -232,7 +234,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(525, 268);
+            this.tabPage1.Size = new System.Drawing.Size(525, 269);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -380,6 +382,16 @@
             this.sfdFile.Filter = "excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
             this.sfdFile.Title = "Enregistrer le fichier modifié";
             // 
+            // lblPlage
+            // 
+            this.lblPlage.AutoSize = true;
+            this.lblPlage.Location = new System.Drawing.Point(263, 161);
+            this.lblPlage.Name = "lblPlage";
+            this.lblPlage.Size = new System.Drawing.Size(35, 13);
+            this.lblPlage.TabIndex = 11;
+            this.lblPlage.Text = "label2";
+            this.lblPlage.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,6 +405,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Excel Duplicator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -438,6 +451,7 @@
         private System.Windows.Forms.Button btnAjoutNom;
         private System.Windows.Forms.Button btnPlage;
         private System.Windows.Forms.Button btnSupprimerNom;
+        private System.Windows.Forms.Label lblPlage;
     }
 }
 
