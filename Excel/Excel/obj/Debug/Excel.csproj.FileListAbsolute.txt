@@ -25,3 +25,6 @@ C:\Users\antenenp_info\Documents\GitHub\ExcelDuplicator\Excel\Excel\obj\Debug\Ex
 C:\Users\antenenp_info\Documents\GitHub\ExcelDuplicator\Excel\Excel\obj\Debug\Excel.Form1.resources
 C:\Users\antenenp_info\Documents\GitHub\ExcelDuplicator\Excel\Excel\obj\Debug\Excel.Properties.Resources.resources
 C:\Users\antenenp_info\Documents\GitHub\ExcelDuplicator\Excel\Excel\obj\Debug\Excel.csproj.GenerateResource.Cache
+C:\Users\PIPOLOL_INFO\Documents\GitHub\ExcelDuplicator\Excel\Excel\bin\Debug\Excel.exe.config
+C:\Users\PIPOLOL_INFO\Documents\GitHub\ExcelDuplicator\Excel\Excel\obj\Debug\Excel.exe
+C:\Users\PIPOLOL_INFO\Documents\GitHub\ExcelDuplicator\Excel\Excel\obj\Debug\Excel.pdb

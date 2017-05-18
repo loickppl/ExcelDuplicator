@@ -17,7 +17,9 @@ namespace Excel
     {
         private string _fileExcel = "";
         public ExcelSheetReplicator excelManager = null;
-        List<string> nomASupp;
+        List<string> listName = new List<string>();
+        List<string> nomASupp = new List<string>();
+        List<string> nomAAjouter = new List<string>();
         bool plage = false;
 
         public string FileExcel
@@ -105,10 +107,22 @@ namespace Excel
             btnPrecedent.Text = "Précédent";
             tabctrl.TabIndex = 1;
             tabctrl.SelectedIndex = 2;
-            foreach (var nom in nomASupp)
+            lstBoxNoms.Items.Clear();
+            foreach (var item in listName)
             {
-                lstBoxNoms.Items.Remove(nom);
+                lstBoxNoms.Items.Add(item);
             }
+            foreach (var item in nomAAjouter)
+            {
+                lstBoxNoms.Items.Add(item);
+            }
+            foreach (var item in nomASupp)
+            {
+                lstBoxNoms.Items.Remove(item.ToString());
+            }
+            listName.Clear();
+            nomAAjouter.Clear();
+            nomASupp.Clear();
         }
 
         private void btnPrecedent_Click(object sender, EventArgs e)
@@ -165,8 +179,14 @@ namespace Excel
             btnSuivant.Text = "Générer fichier";
             btnPrecedent.Text = "Précédent";
             txtBoxFichierNom_TextChanged(this, new EventArgs());
+            lstBoxNoms.Items.Clear();
+            foreach (var item in listName)
+            {
+                lstBoxNoms.Items.Add(item);
+            }
+            listName.Clear();
+            nomAAjouter.Clear();
             nomASupp.Clear();
-            lstBoxNoms.ClearSelected();
         }
 
         private void btnModifierNom_Click(object sender, EventArgs e)
@@ -175,7 +195,10 @@ namespace Excel
             tabctrl.TabIndex = 3;
             btnSuivant.Text = "Valider";
             btnPrecedent.Text = "Annuler";
-
+            foreach (var item in lstBoxNoms.Items)
+            {
+                listName.Add(item.ToString());
+            }
         }
 
         private void btnparcourir_Click(object sender, EventArgs e)
@@ -257,6 +280,7 @@ namespace Excel
 
         private void btnAjoutNom_Click(object sender, EventArgs e)
         {
+            nomAAjouter.Add(txtBoxNom.Text);
             lstBoxNoms.Items.Add(txtBoxNom.Text);
         }
 
@@ -309,13 +333,10 @@ namespace Excel
 
         private void btnSupprimerNom_Click(object sender, EventArgs e)
         {
-            ListBox.SelectedObjectCollection selections;
-            selections = lstBoxNoms.SelectedItems;
-            nomASupp = new List<string>();
-
-            foreach (var nom in selections)
+            foreach (string s in lstBoxNoms.SelectedItems.OfType<string>().ToList())
             {
-                nomASupp.Add(nom.ToString());
+                nomASupp.Add(s.ToString());
+                lstBoxNoms.Items.Remove(s);
             }
         }
     }

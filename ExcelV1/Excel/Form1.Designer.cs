@@ -50,6 +50,7 @@
             this.lblCheminFichier = new System.Windows.Forms.Label();
             this.tabctrl = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnSupprimerNom = new System.Windows.Forms.Button();
             this.btnAjoutNom = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtBoxNom = new System.Windows.Forms.TextBox();
@@ -58,7 +59,6 @@
             this.lstBoxNoms = new System.Windows.Forms.ListBox();
             this.opdFiles = new System.Windows.Forms.OpenFileDialog();
             this.sfdFile = new System.Windows.Forms.SaveFileDialog();
-            this.btnSupprimerNom = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -116,7 +116,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(120, 30);
+            this.label3.Location = new System.Drawing.Point(125, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(293, 29);
             this.label3.TabIndex = 10;
@@ -180,7 +180,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(115, 22);
+            this.label1.Location = new System.Drawing.Point(125, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(255, 29);
             this.label1.TabIndex = 9;
@@ -241,7 +241,7 @@
             // 
             this.lblChoixDufichierExcel.AutoSize = true;
             this.lblChoixDufichierExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChoixDufichierExcel.Location = new System.Drawing.Point(138, 36);
+            this.lblChoixDufichierExcel.Location = new System.Drawing.Point(125, 25);
             this.lblChoixDufichierExcel.Name = "lblChoixDufichierExcel";
             this.lblChoixDufichierExcel.Size = new System.Drawing.Size(265, 29);
             this.lblChoixDufichierExcel.TabIndex = 4;
@@ -281,11 +281,11 @@
             this.tabctrl.Controls.Add(this.tabPage2);
             this.tabctrl.Controls.Add(this.tabPage3);
             this.tabctrl.Controls.Add(this.tabPage4);
-            this.tabctrl.Location = new System.Drawing.Point(12, 4);
+            this.tabctrl.Location = new System.Drawing.Point(12, 3);
             this.tabctrl.Name = "tabctrl";
             this.tabctrl.SelectedIndex = 0;
             this.tabctrl.ShowToolTips = true;
-            this.tabctrl.Size = new System.Drawing.Size(533, 294);
+            this.tabctrl.Size = new System.Drawing.Size(533, 295);
             this.tabctrl.TabIndex = 0;
             // 
             // tabPage4
@@ -300,10 +300,20 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(525, 268);
+            this.tabPage4.Size = new System.Drawing.Size(525, 269);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnSupprimerNom
+            // 
+            this.btnSupprimerNom.Location = new System.Drawing.Point(267, 179);
+            this.btnSupprimerNom.Name = "btnSupprimerNom";
+            this.btnSupprimerNom.Size = new System.Drawing.Size(173, 23);
+            this.btnSupprimerNom.TabIndex = 17;
+            this.btnSupprimerNom.Text = "Supprimer nom(s)  séléctionné(s)";
+            this.btnSupprimerNom.UseVisualStyleBackColor = true;
+            this.btnSupprimerNom.Click += new System.EventHandler(this.btnSupprimerNom_Click);
             // 
             // btnAjoutNom
             // 
@@ -319,7 +329,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(134, 13);
+            this.label4.Location = new System.Drawing.Point(125, 25);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(210, 29);
             this.label4.TabIndex = 15;
@@ -369,16 +379,6 @@
             this.sfdFile.FileName = "fichierExcel.xlsx";
             this.sfdFile.Filter = "excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
             this.sfdFile.Title = "Enregistrer le fichier modifié";
-            // 
-            // btnSupprimerNom
-            // 
-            this.btnSupprimerNom.Location = new System.Drawing.Point(267, 179);
-            this.btnSupprimerNom.Name = "btnSupprimerNom";
-            this.btnSupprimerNom.Size = new System.Drawing.Size(173, 23);
-            this.btnSupprimerNom.TabIndex = 17;
-            this.btnSupprimerNom.Text = "Supprimer nom(s)  séléctionné(s)";
-            this.btnSupprimerNom.UseVisualStyleBackColor = true;
-            this.btnSupprimerNom.Click += new System.EventHandler(this.btnSupprimerNom_Click);
             // 
             // Form1
             // 
